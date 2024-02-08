@@ -1,0 +1,54 @@
+# ABN Validation
+
+Australian Business Number validation implementation in JavaScript.
+
+## Source
+
+```js filename="abn-validation.js" showLineNumbers copy
+/**
+ * @description Validate ABN numbers
+ *
+ * @param {string} abn
+ * @return {boolean} is ABN number valid
+ *
+ * 0. ABN must be 11 digits long
+ * 1. Subtract 1 from the first (left) digit to give a new eleven digit number
+ * 2. Multiply each of the digits in this new number by its weighting factor
+ * 3. Sum the resulting 11 products
+ * 4. Divide the total by 89, noting the remainder
+ * 5. If the remainder is zero the number is valid
+ */
+export function validateABN(abn) {
+  let isValid = true
+
+  // remove all spaces
+  abn = abn.replace(/\s/g, '')
+
+  // 0. ABN must be 11 digits long
+  isValid = abn && /^\d{11}$/.test(abn)
+
+  if (isValid) {
+    let weightedSum = 0
+    let weight = [10, 1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
+
+    // Rules: 1,2,3
+    let i
+    for (i = 0; i < weight.length; i++) {
+      weightedSum += (parseInt(abn[i], 16) - (i === 0 ? 1 : 0)) * weight[i]
+    }
+
+    // Rules: 4,5
+    isValid = isValid && weightedSum % 89 === 0
+  }
+
+  return isValid
+}
+```
+
+## Usage
+
+```js filename="example-usage.js" showLineNumbers copy
+validateABN("51824753556") // true
+validateABN("51 824 753 556") // true
+validateABN("51824744556") // false
+```

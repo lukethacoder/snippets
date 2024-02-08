@@ -1,0 +1,27 @@
+
+# Apex: Bulk Delete Knowledge Articles
+
+Code snippet to bulk delete Knowledge Articles in Salesforce, no matter their current `PublishStatus`.
+
+```apex filename="BulkDeleteKnowledgeArticles.apex" showLineNumbers copy
+List<Knowledge__kav> knowledges = [
+  SELECT Id, KnowledgeArticleId, Title, RecordType.DeveloperName, PublishStatus
+  FROM Knowledge__kav
+];
+
+for (Knowledge__kav knowledge : knowledges) {
+  Id knowledgeId = knowledge.KnowledgeArticleId;
+  Boolean isArchived = knowledge.PublishStatus == 'Archived';
+  if (knowledge.PublishStatus == 'Live') {
+    KbManagement.PublishingService.archiveOnlineArticle(knowledgeId, null);
+    isArchived = true;
+  }
+  if (isArchived) {
+    KbManagement.PublishingService.deleteArchivedArticle(knowledgeId);
+  } else if (knowledge.PublishStatus == 'Draft') {
+    KbManagement.PublishingService.deleteDraftArticle(knowledgeId);
+  } else {
+    System.debug('Unable to delete knowledge article ' + knowledge.Id + ' (' + knowledge.KnowledgeArticleId + ')');
+  }
+}
+```

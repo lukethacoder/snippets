@@ -1,0 +1,277 @@
+# CSS Variables to JSON
+
+Convert CSS Variables String:
+
+```css
+:root {
+  --design-tokens-global-color-opacity-10: 0.1;
+  --design-tokens-global-color-static-gray-900: rgb(50, 50, 50);
+  --design-tokens-global-color-static-black: rgb(0, 0, 0);
+  --design-tokens-global-color-static-white: rgb(255, 255, 255);
+  --design-tokens-global-color-static-blue-400: rgb(55, 142, 240);
+  --design-tokens-global-color-static-blue-500: rgb(38, 128, 235);
+  --design-tokens-global-color-static-blue: rgb(20, 115, 230);
+  --design-tokens-global-color-static-blue-600: rgb(20, 115, 230);
+  --design-tokens-global-color-static-blue-700: rgb(13, 102, 208);
+  --design-tokens-global-color-static-orange-600: rgb(190, 111, 16);
+  --design-tokens-global-color-static-orange: rgb(183, 91, 6);
+  --design-tokens-global-color-static-orange-700: rgb(203, 111, 16);
+  --design-tokens-barloader-large-track-color: rgb(225, 225, 225);
+  --design-tokens-barloader-large-track-fill-color: rgb(20, 115, 230);
+  --design-tokens-barloader-large-indeterminate-track-color-disabled: rgb(225, 225, 225);
+  --design-tokens-barloader-large-indeterminate-track-fill-color-disabled: rgb(225, 225, 225);
+  --design-tokens-barloader-large-over-background-text-color: rgb(255, 255, 255);
+  --design-tokens-barloader-large-over-background-track-color: rgba(255,255,255,0.2);
+  --design-tokens-button-cta-text-color-disabled: rgb(179, 179, 179);
+  --design-tokens-button-over-background-icon-color: rgb(255, 255, 255);
+  --design-tokens-alias-track-color-over-background: rgba(255,255,255,0.2);
+  --design-tokens-alias-icon-color: rgb(110, 110, 110);
+  --design-tokens-alias-icon-color-over-background: rgb(255, 255, 255);
+  --design-tokens-button-over-background-background-color: rgba(0, 0, 0, 0);
+  --design-tokens-button-primary-border-color-disabled: rgb(234, 234, 234);
+  --design-tokens-button-primary-text-color-disabled: rgb(179, 179, 179);
+  --design-tokens-button-quiet-over-background-icon-color: rgb(255, 255, 255);
+  --design-tokens-button-quiet-over-background-background-color: rgba(0, 0, 0, 0);
+}
+```
+
+to JSON
+
+```json
+{
+  "design": {
+    "tokens": {
+      "global": {
+        "color": {
+          "opacity": {
+            "10": {
+              "value": "0.1"
+            }
+          },
+          "static": {
+            "gray": {
+              "900": {
+                "value": "rgb(50, 50, 50)"
+              }
+            },
+            "black": {
+              "value": "rgb(0, 0, 0)"
+            },
+            "white": {
+              "value": "rgb(255, 255, 255)"
+            },
+            "blue": {
+              "400": {
+                "value": "rgb(55, 142, 240)"
+              },
+              "500": {
+                "value": "rgb(38, 128, 235)"
+              },
+              "600": {
+                "value": "rgb(20, 115, 230)"
+              },
+              "700": {
+                "value": "rgb(13, 102, 208)"
+              }
+            },
+            "orange": {
+              "600": {
+                "value": "rgb(190, 111, 16)"
+              },
+              "700": {
+                "value": "rgb(203, 111, 16)"
+              }
+            }
+          }
+        }
+      },
+      "barloader": {
+        "large": {
+          "track": {
+            "color": {
+              "value": "rgb(225, 225, 225)"
+            },
+            "fill": {
+              "color": {
+                "value": "rgb(20, 115, 230)"
+              }
+            }
+          },
+          "indeterminate": {
+            "track": {
+              "color": {
+                "disabled": {
+                  "value": "rgb(225, 225, 225)"
+                }
+              },
+              "fill": {
+                "color": {
+                  "disabled": {
+                    "value": "rgb(225, 225, 225)"
+                  }
+                }
+              }
+            }
+          },
+          "over": {
+            "background": {
+              "text": {
+                "color": {
+                  "value": "rgb(255, 255, 255)"
+                }
+              },
+              "track": {
+                "color": {
+                  "value": "rgba(255,255,255,0.2)"
+                }
+              }
+            }
+          }
+        }
+      },
+      "button": {
+        "cta": {
+          "text": {
+            "color": {
+              "disabled": {
+                "value": "rgb(179, 179, 179)"
+              }
+            }
+          }
+        },
+        "over": {
+          "background": {
+            "icon": {
+              "color": {
+                "value": "rgb(255, 255, 255)"
+              }
+            },
+            "background": {
+              "color": {
+                "value": "rgba(0, 0, 0, 0)"
+              }
+            }
+          }
+        },
+        "primary": {
+          "border": {
+            "color": {
+              "disabled": {
+                "value": "rgb(234, 234, 234)"
+              }
+            }
+          },
+          "text": {
+            "color": {
+              "disabled": {
+                "value": "rgb(179, 179, 179)"
+              }
+            }
+          }
+        },
+        "quiet": {
+          "over": {
+            "background": {
+              "icon": {
+                "color": {
+                  "value": "rgb(255, 255, 255)"
+                }
+              },
+              "background": {
+                "color": {
+                  "value": "rgba(0, 0, 0, 0)"
+                }
+              }
+            }
+          }
+        }
+      },
+      "alias": {
+        "track": {
+          "color": {
+            "over": {
+              "background": {
+                "value": "rgba(255,255,255,0.2)"
+              }
+            }
+          }
+        },
+        "icon": {
+          "color": {
+            "value": "rgb(110, 110, 110)",
+            "over": {
+              "background": {
+                "value": "rgb(255, 255, 255)"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+## Source
+
+```js filename="css-vars-to-json.js" showLineNumbers copy
+const parseCSSVariables = (css) => {
+  const lines = css.split('\n');
+  let currentPath = {};
+  let rootPath = {};
+
+  for (const line of lines) {
+    const trimmedLine = line.trim();
+
+    if (trimmedLine.startsWith(':root')) {
+      currentPath = rootPath;
+    } else if (trimmedLine.startsWith('--')) {
+      const [variable, value] = trimmedLine.split(':');
+      currentPath[variable.trim().replace('--', '')] = value.trim().replace(/;$/, '');
+    }
+  }
+
+  return toNested(rootPath);
+};
+
+const toNested = (data) => {
+  let result = {};
+
+  for (const key in data) {
+    const keys = key.split('-');
+    let currentObj = result;
+
+    for (let i = 0; i < keys.length; i++) {
+      const nestedKey = keys[i];
+      if (!currentObj.hasOwnProperty(nestedKey)) {
+        if (i === keys.length - 1) {
+          if (typeof currentObj[nestedKey] !== 'object') {
+            const defaultValue = currentObj[nestedKey];
+            currentObj[nestedKey] = { default: defaultValue };
+          }
+          currentObj[nestedKey].value = data[key];
+        } else {
+          currentObj[nestedKey] = currentObj[nestedKey] || {};
+        }
+      }
+      currentObj = currentObj[nestedKey];
+    }
+  }
+  return result;
+};
+```
+
+## Usage
+
+```js filename="example-usage.js" showLineNumbers copy
+const css = `
+:root {
+  --design-tokens-global-color-static-blue-400: rgb(55, 142, 240);
+  --design-tokens-global-color-static-blue-500: rgb(38, 128, 235);
+  --design-tokens-global-color-static-blue: rgb(20, 115, 230);
+  --design-tokens-global-color-static-blue-600: rgb(20, 115, 230);
+  --design-tokens-global-color-static-blue-700: rgb(13, 102, 208);
+}`;
+
+const extractedVariables = parseCSSVariables(css);
+```

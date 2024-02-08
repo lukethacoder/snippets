@@ -1,0 +1,24 @@
+import WithExample from './max-lines/withExample'
+import WithoutExample from './max-lines/withoutExample'
+
+# Max Lines to Display
+
+```css filename="style.css" showLineNumbers copy
+p {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+```
+
+### With `line-clamp`
+
+<br/>
+<WithExample/>
+
+### Without `line-clamp`
+
+<br/>
+<WithoutExample/>
+

@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.nav-item svg {
+  width: 20px;
+  height: 20px;
+}
+
+pre {
+  --nextra-primary-hue: 200;
+  --nextra-primary-saturation: 25%; 
+}

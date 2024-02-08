@@ -1,0 +1,29 @@
+# AppDir CORS Middlewear API Route
+
+Example `/api/route.ts` to bypass client-side CORS issues.
+
+```ts filename="/api/route.ts" showLineNumbers copy
+import { NextResponse } from 'next/server'
+
+// To handle a GET request to /api/cors?url=YOUR_URL_HERE
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url)
+  const urlProxy = searchParams.get('url')
+
+  if (!urlProxy) {
+    return NextResponse.json(
+      { error: 'Please pass a ?url= parameter' },
+      { status: 400 }
+    )
+  }
+
+  try {
+    const responseProxy = await fetch(urlProxy)
+    const responseData = await responseProxy.json()
+
+    return NextResponse.json(responseData, { status: 200 })
+  } catch (error) {
+    return NextResponse.json({ error: 'Something went wrong' }, { status: 400 })
+  }
+}
+```

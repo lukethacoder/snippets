@@ -1,0 +1,48 @@
+# Relative Date Time Display
+
+Render a user friendly relative time string with either one or two date values. If only one date value is passed, it is relative to `Date.now()`. The optional second parameter allows your base date to be adjusted.
+
+## Source
+
+```js filename="relative-time.js" showLineNumbers copy
+const rtf = new Intl.RelativeTimeFormat("en", { numeric: "auto" });
+const TIME_UNITS = {
+  year: 24 * 60 * 60 * 1000 * 365,
+  month: (24 * 60 * 60 * 1000 * 365) / 12,
+  day: 24 * 60 * 60 * 1000,
+  hour: 60 * 60 * 1000,
+  minute: 60 * 1000,
+  second: 1000
+};
+const getRelativeTime = (d1, d2 = new Date()) => {
+  const elapsed = d1 - d2;
+
+  // "Math.abs" accounts for both "past" & "future" scenarios
+  for (var u in TIME_UNITS) {
+    if (Math.abs(elapsed) > TIME_UNITS[u] || u == "second") {
+      return rtf.format(Math.round(elapsed / TIME_UNITS[u]), u);
+    }
+  }
+};
+```
+
+## Usage
+
+```js filename="example-usage.js" showLineNumbers copy
+// in the past
+getRelativeTime(Date.now() - 10000) // 10 seconds ago
+getRelativeTime(Date.now() - 100000) // 2 minutes ago
+getRelativeTime(Date.now() - 10000000) // 3 hours ago
+getRelativeTime(Date.now() - 100**4) // yesterday
+getRelativeTime(Date.now() - 110**4) // 2 days ago
+getRelativeTime(Date.now() - 80**5) // last month
+getRelativeTime(Date.now() - 50**6) // 6 months ago
+getRelativeTime(Date.now() - 60**6) // last year
+getRelativeTime(Date.now() - 15**10) // 18 years ago
+
+// in the future
+getRelativeTime(Date.now() + 10000) // in 10 seconds
+getRelativeTime(Date.now() + 100000) // in 2 minutes
+getRelativeTime(Date.now() + 60**6) // next year
+getRelativeTime(Date.now() + 15**10) // in 18 years
+```
