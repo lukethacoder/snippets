@@ -4,5 +4,17 @@
   "next": "Next",
   "css": "CSS",
   "salesforce": "Salesforce",
-  "powershell": "Powershell"
+  "powershell": "Powershell",
+  "word_repo_link2": {
+    "title": "Main Site",
+    "href": "https://lukesecomb.digital?utm_campaign=snippets",
+    "type": "page",
+    "newWindow": true
+  },
+  "word_repo_link": {
+    "title": "Word Repo",
+    "href": "https://blog.lukesecomb.digital?utm_campaign=snippets",
+    "type": "page",
+    "newWindow": true
+  }
 }

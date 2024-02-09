@@ -153,9 +153,13 @@ export default {
   footer: {
     text: (
       <span>
-        {new Date().getFullYear()} ©{' '}
-        <a href='https://lukesecomb.digital' target='_blank'>
-          Luke Secomb
+        {new Date().getFullYear()} © made by{` `}
+        <a
+          className='underline'
+          href='https://lukesecomb.digital?utm_campaign=snippets'
+          target='_blank'
+        >
+          luke
         </a>
         .
       </span>
