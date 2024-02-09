@@ -116,6 +116,16 @@ export default {
   project: {
     link: 'https://github.com/lukethacoder/snippets',
   },
+  head: (
+    <>
+      <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+      <meta property='og:title' content='Lukes Snippets' />
+      <meta
+        property='og:description'
+        content='A place for my code snippets and tid bits to call home. And to share with others.'
+      />
+    </>
+  ),
   useNextSeoProps() {
     const { asPath } = useRouter()
     if (asPath !== '/') {
