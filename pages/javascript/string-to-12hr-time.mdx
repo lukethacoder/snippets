@@ -1,0 +1,107 @@
+# String to 12hr Time in TypeScript
+
+Given a user input, parse to a valid 12hr time string (`h:mma`).
+
+Allows for both 12hr and 24hr inputs, as well as single digit numbers.
+
+## Source
+
+```ts filename="string-to-12hr-time.ts" showLineNumbers copy
+/**
+ * Given a string time string convert to 12hr format (HH:MM:am|pm)
+ *
+ * @param {string} timeString Time string
+ * @returns {string | null} valid 12hr time string (or null for unparsable times)
+ *
+ * @example
+ * convertTo12HourFormat("1575") -> "4:15pm"
+ * convertTo12HourFormat("2530pm") -> "1:30pm"
+ * convertTo12HourFormat("2500") -> "1:00am"
+ * convertTo12HourFormat("0090") -> "1:30am"
+ * convertTo12HourFormat("3500") -> "11:00am"
+ * convertTo12HourFormat("1pm") -> "1:00pm"
+ * convertTo12HourFormat("1:30pm") -> "1:30pm"
+ * convertTo12HourFormat("1445") -> "2:45pm"
+ * convertTo12HourFormat("1445pm") -> "2:45am"
+ * convertTo12HourFormat("14") -> "2:00pm"
+ * convertTo12HourFormat("2400") -> "12:00am"
+ * convertTo12HourFormat("3500") -> "11:00am"
+ */
+export function convertTo12HourFormat(timeString: string): string | null {
+  // Regular expression patterns to match different time formats
+  const validTimeStringPattern = /^(\d{1,2})(:)?(\d{2})?$/i;
+  const isAmOrPm = /(?:pm|am)$/i;
+
+  // Match the input time string with different patterns
+  let validTimeStringMatch = timeString.match(validTimeStringPattern);
+  let isAmOrPmMatch = timeString.match(isAmOrPm);
+
+  let isPm = isAmOrPmMatch && isAmOrPmMatch[0].toLowerCase() === 'pm';
+
+  if (isAmOrPmMatch) {
+    validTimeStringMatch = timeString.replace('am', '').replace('pm', '').match(validTimeStringPattern);
+  }
+
+  // valid date string match
+  if (validTimeStringMatch) {
+    // get hour and minute parts
+    let hour = parseInt(validTimeStringMatch[1]);
+    let minute = validTimeStringMatch[3] ? parseInt(validTimeStringMatch[3]) : 0;
+
+    // check minute is within valid range (0-59)
+    while (minute > 60) {
+      minute -= 60;
+
+      // for each 60mins, add another hour to the total
+      hour += 1;
+    }
+
+    // Handle hours exceeding 24 (special cases for 2400 and 2500)
+    if (hour >= 24) {
+      // Wrap around for other values
+      hour %= 24;
+
+      if (hour === 2400) {
+        hour = 0; // Set to 00:00 for 2400
+      } else {
+        // Wrap around for other values
+        hour %= 24;
+      }
+    }
+
+    // convert to 12hr time
+    let hr12Time = hour;
+    let meridiem: 'pm' | 'am' = isPm ? 'pm' : 'am';
+    // check minute is within valid range (0-59)
+    while (hr12Time > 12) {
+      hr12Time -= 12;
+
+      // switch between meridiem
+      meridiem = meridiem === 'pm' ? 'am' : 'pm';
+    }
+
+    // Format and return the time in 24-hour format
+    return `${(hr12Time === 0 ? hr12Time + 12 : hr12Time).toString()}:${minute.toString().padStart(2, '0')}${meridiem}`;
+  }
+
+  // Return null for invalid input
+  return null;
+}
+```
+
+## Usage
+
+```ts filename="example-usage.ts" showLineNumbers copy
+convertTo12HourFormat("1575") // "4:15pm"
+convertTo12HourFormat("2530pm") // "1:30pm"
+convertTo12HourFormat("2500") // "1:00am"
+convertTo12HourFormat("0090") // "1:30am"
+convertTo12HourFormat("3500") // "11:00am"
+convertTo12HourFormat("1pm") // "1:00pm"
+convertTo12HourFormat("1:30pm") // "1:30pm"
+convertTo12HourFormat("1445") // "2:45pm"
+convertTo12HourFormat("1445pm") // "2:45am"
+convertTo12HourFormat("14") // "2:00pm"
+convertTo12HourFormat("2400") // "12:00am"
+convertTo12HourFormat("3500") // "11:00am"
+```

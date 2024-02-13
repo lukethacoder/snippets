@@ -1,4 +1,5 @@
 {
   "abn-validation": "ABN Validation",
-  "css-vars-to-json": "CSS Variables to JSON"
+  "css-vars-to-json": "CSS Variables to JSON",
+  "string-to-12hr-time": "String to 12hr Time"
 }
