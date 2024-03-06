@@ -1,5 +1,6 @@
 {
   "abn-validation": "ABN Validation",
+  "copy-to-clipboard": "Copy To Clipboard",
   "css-vars-to-json": "CSS Variables to JSON",
   "string-to-12hr-time": "String to 12hr Time"
 }

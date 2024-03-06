@@ -1,0 +1,26 @@
+# Copy to Clipboard
+
+A framework agnostic `copyToClipboard` method.
+
+## Source
+
+```ts filename="copyTextToClipboard.ts" showLineNumbers copy
+/**
+ * Copy given text to the users clipboard
+ * 
+ * @param {string} text - Text you want to copy to the clipboard
+ */
+async function copyTextToClipboard(text: string) {
+  if ('clipboard' in navigator) {
+    return await navigator.clipboard.writeText(text);
+  } else {
+    return document.execCommand('copy', true, text);
+  }
+}
+```
+
+## Usage
+
+```ts filename="exampleCopyTextToClipboard.ts" showLineNumbers copy
+copyTextToClipboard('copy-this') // 'copy-this' now in the users clipboard
+```
